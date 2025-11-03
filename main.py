@@ -8,6 +8,9 @@ import argparse
 from dotenv import load_dotenv
 
 
+PID_HANDLE = "21.11146"
+
+
 def create_pid_url(sbr_num: int, username: str, password: str) -> str:
     sbr_id = f"sbr-{sbr_num}"
     landingpage_url = (
@@ -16,7 +19,7 @@ def create_pid_url(sbr_num: int, username: str, password: str) -> str:
 
     headers = {"Content-Type": "application/json"}
 
-    baseurl = "https://pid.gwdg.de/handles/21.11146/"
+    baseurl = f"https://pid.gwdg.de/handles/{PID_HANDLE}/"
     data = json.dumps([{"type": "URL", "parsed_data": landingpage_url}])
     r = requests.put(
         baseurl + sbr_id,
@@ -50,4 +53,4 @@ if __name__ == "__main__":
 
     url = create_pid_url(args.sbr_num, os.environ["username"], os.environ["password"])
 
-    print(f"PID link for COMEDI metadata:\nhdl:21.11146/sbr-{args.sbr_num}")
+    print(f"PID link for COMEDI metadata:\nhdl:{PID_HANDLE}/sbr-{args.sbr_num}")
