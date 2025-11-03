@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 PID_HANDLE = "21.11146"
 
 
-def create_pid_url(sbr_num: int, username: str, password: str) -> str:
+def create_pid(sbr_num: int, username: str, password: str) -> None:
     sbr_id = f"sbr-{sbr_num}"
     landingpage_url = (
         f"https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-{sbr_id}/"
@@ -30,7 +30,6 @@ def create_pid_url(sbr_num: int, username: str, password: str) -> str:
     r.raise_for_status()
     print(f"PUT request url: {r.url}")
     print(f"PUT request status code: {r.status_code}")
-    return r.url
 
 
 if __name__ == "__main__":
@@ -51,6 +50,6 @@ if __name__ == "__main__":
             print(f"environment variable '{env_variable}' is missing in .env file!")
             exit(1)
 
-    url = create_pid_url(args.sbr_num, os.environ["username"], os.environ["password"])
+    create_pid(args.sbr_num, os.environ["username"], os.environ["password"])
 
     print(f"PID link for COMEDI metadata:\nhdl:{PID_HANDLE}/sbr-{args.sbr_num}")
