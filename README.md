@@ -36,7 +36,7 @@ uv run main.py 105
 Dette vil lage en PID for ressursen, og printe det du skal putte i PID-feltet i COMEDI 
 
 ### Flagg
-Du kan kjøre skriptet med flagget -c for å sjekke om alle nummer fra 1 opp til sbr-num har en PID
+Du kan kjøre skriptet med flagget -c for å sjekke om alle nummer fra 1 opp til sbr-num har en PID  
 Du kan kjøre skriptet med flagget -c og -a for å lage PID for alle nummer fra 1 opp til sbr-num som ikke har en PID
 
 
@@ -62,7 +62,7 @@ pip install .
 ```
 
 ### Environment Variables
-Ask a colleague for the username and password for the `.env` file.
+Ask a colleague for the username and password for the `.env` file.  
 See `.env-example` for how the `.env` file should look (make a copy, name it `.env`, and fill in the username and password).
 
 ## Run the Code
@@ -80,5 +80,5 @@ uv run main.py 105
 This will create a PID for the resource and print what you should enter in the PID field in COMEDI.
 
 ### Flags
-You can run the script with the `-c` flag to check if all numbers from 1 up to sbr-num have a PID.
+You can run the script with the `-c` flag to check if all numbers from 1 up to sbr-num have a PID.  
 You can run the script with the `-c` and `-a` flags to create PIDs for all numbers from 1 up to sbr-num that don't have a PID.
