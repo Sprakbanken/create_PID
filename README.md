@@ -1,5 +1,5 @@
 # Lag PID 
-Dette repo inneholder kode for å lage PID til ressurser i ressurskatalogen (for å føre opp i COMEDI metadata)
+Dette repo inneholder kode for å lage PID til ressurser i ressurskatalogen (for å føre opp i COMEDI metadata)  
 (Scroll down for English)
 
 ## Oppsett
