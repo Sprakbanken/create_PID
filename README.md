@@ -18,8 +18,8 @@ pip install .
 ```
 
 ### Miljøvariabler
-Spør en kollega om brukernavn og passord til .env 
-Se .env-example for hvordan .env fila skal se ut (lag en kopi, kall den .env og fyll inn brukernavn of passord)
+Spør en kollega om brukernavn og passord til .env  
+Se .env-example for hvordan .env fila skal se ut (lag en kopi, kall den .env og fyll inn brukernavn og passord)
 
 ## Kjør koden 
 
