@@ -1,6 +1,6 @@
 # Lag PID 
-
 Dette repo inneholder kode for å lage PID til ressurser i ressurskatalogen (for å føre opp i COMEDI metadata)
+(Scroll down for English)
 
 ## Oppsett
 
@@ -39,8 +39,6 @@ Dette vil lage en PID for ressursen, og printe det du skal putte i PID-feltet i 
 Du kan kjøre skriptet med flagget -c for å sjekke om alle nummer fra 1 opp til sbr-num har en PID  
 Du kan kjøre skriptet med flagget -c og -a for å lage PID for alle nummer fra 1 opp til sbr-num som ikke har en PID
 
-
---- English --- 
 
 # Create PID
 
