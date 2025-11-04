@@ -19,7 +19,7 @@ pip install .
 
 ### Miljøvariabler
 Spør en kollega om brukernavn og passord til .env  
-Se .env-example for hvordan .env fila skal se ut (lag en kopi, kall den .env og fyll inn brukernavn og passord)
+Se [.env-example](.env-example) for hvordan `.env`-fila skal se ut (lag en kopi, kall den `.env` og fyll inn brukernavn og passord)
 
 ## Kjør koden 
 
@@ -61,7 +61,7 @@ pip install .
 
 ### Environment Variables
 Ask a colleague for the username and password for the `.env` file.  
-See `.env-example` for how the `.env` file should look (make a copy, name it `.env`, and fill in the username and password).
+See [.env-example](.env-example) for how the `.env` file should look (make a copy, name it `.env`, and fill in the username and password).
 
 ## Run the Code
 
