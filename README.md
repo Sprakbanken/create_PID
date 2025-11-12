@@ -36,8 +36,8 @@ uv run main.py 105
 Dette vil lage en PID for ressursen, og printe det du skal putte i PID-feltet i COMEDI 
 
 ### Flagg
-Du kan kjøre skriptet med flagget -c for å sjekke om alle nummer fra 1 opp til sbr-num har en PID  
-Du kan kjøre skriptet med flagget -c og -a for å lage PID for alle nummer fra 1 opp til sbr-num som ikke har en PID
+Du kan kjøre skriptet med flagget `-c` for å sjekke om alle nummer fra 1 opp til sbr-num har en PID  
+Du kan kjøre skriptet med flaggene `-c` og `-a` for å lage PID for alle nummer fra 1 opp til sbr-num som ikke har en PID
 
 
 # Create PID
