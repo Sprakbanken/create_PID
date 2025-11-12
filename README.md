@@ -13,7 +13,7 @@ for å installere riktig versjon av python og avhengigheter.
 Eventuelt lag et virtuelt miljø manuelt og installer med pip slik:
 ```bash
 python3 -m venv .venv
-. .venv/bin/activate
+. ./venv/bin/activate
 pip install .
 ```
 
