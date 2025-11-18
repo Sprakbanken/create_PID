@@ -32,7 +32,7 @@ Denne funksjonen lager en liste over alle PIDer registrert på handle-prefikset 
 uv run main.py list
 ```
 
-Første kolonne er PID, andre kolonne er PID-type (alltid URL), og tredje kolonne URLen som PIDen peker til.
+Første kolonne er PID, andre kolonne er PID-type (stort sett alltid URL), og tredje kolonne URLen som PIDen peker til.
 
 F.eks.:
 ```csv
