@@ -1,5 +1,5 @@
 # Lag PID 
-Dette repo inneholder kode for å lage PID til ressurser i ressurskatalogen (for å føre opp i COMEDI metadata)  
+Dette repoet inneholder kode for å lage PID til språkressurser.
 (Scroll down for English)
 
 ## Oppsett
@@ -18,65 +18,20 @@ pip install .
 ```
 
 ### Miljøvariabler
-Spør en kollega om brukernavn og passord til .env  
+Spør en kollega om brukernavn, passord og handle-prefiks til .env  
 Se [.env-example](.env-example) for hvordan `.env`-fila skal se ut (lag en kopi, kall den `.env` og fyll inn brukernavn og passord)
 
 ## Kjør koden 
 
 ```bash
-uv run main.py {sbr-num}
+uv run main.py {PID} --url [URL-for-ressurs}
 ```
-hvor sbr-num er språkbank-ressurs-nummeret, altså tallet i urlen i ressurskatalogen (https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-{sbr-num}). 
+hvor PID er IDen som skal være permanent (f.eks. en UUID) og url er URLen PIDen skal peke til.
 
 F.eks: 
 ```bash
-uv run main.py 105
+uv run main.py 23b9ce9d-14b9-4f7c-9b25-f305e3e7ca6a --url https://www.nb.no
 ```
 
-Dette vil lage en PID for ressursen, og printe det du skal putte i PID-feltet i COMEDI 
-
-### Flagg
-Du kan kjøre skriptet med flagget `-c` for å sjekke om alle nummer fra 1 opp til sbr-num har en PID  
-Du kan kjøre skriptet med flaggene `-c` og `-a` for å lage PID for alle nummer fra 1 opp til sbr-num som ikke har en PID
-
-
-# Create PID
-
-This repository contains code for creating PIDs (Persistent Identifiers) for resources in the resource catalog (for inclusion in COMEDI metadata).
-
-## Setup
-
-The easiest way is to install [uv](https://docs.astral.sh/uv/#installation) and run:
-```bash
-uv sync
-```
-to install the correct version of Python and dependencies.
-
-Alternatively, create a virtual environment manually and install with pip:
-```bash
-python3 -m venv .venv
-. .venv/bin/activate
-pip install .
-```
-
-### Environment Variables
-Ask a colleague for the username and password for the `.env` file.  
-See [.env-example](.env-example) for how the `.env` file should look (make a copy, name it `.env`, and fill in the username and password).
-
-## Run the Code
-
-```bash
-uv run main.py {sbr-num}
-```
-where `sbr-num` is the language bank resource number, i.e. the number in the url of the resource catalogue (https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-{sbr-num}).
-
-For example:
-```bash
-uv run main.py 105
-```
-
-This will create a PID for the resource and print what you should enter in the PID field in COMEDI.
-
-### Flags
-You can run the script with the `-c` flag to check if all numbers from 1 up to sbr-num have a PID.  
-You can run the script with the `-c` and `-a` flags to create PIDs for all numbers from 1 up to sbr-num that don't have a PID.
+Dette vil lage en PID for ressursen, som kan resolves via:
+https://hdl.handle.net/{HANDLE_PREFIX}/23b9ce9d-14b9-4f7c-9b25-f305e3e7ca6a
