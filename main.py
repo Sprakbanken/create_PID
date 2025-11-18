@@ -7,22 +7,19 @@ import json
 import argparse
 from dotenv import load_dotenv
 
+load_dotenv()
+
 PID_HANDLE = os.environ["PID_HANDLE"]
 
-def create_pid(sbr_num: int, username: str, password: str) -> None:
-    print(f"Creating PID for sbr-{sbr_num}")
-
-    sbr_id = f"sbr-{sbr_num}"
-    landingpage_url = (
-        f"https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-{sbr_id}/"
-    )
+def create_pid(PID: str, url: str, username: str, password: str) -> None:
+    print(f"Creating PID for {PID}")
 
     headers = {"Content-Type": "application/json"}
 
-    url = f"https://pid.gwdg.de/handles/{PID_HANDLE}/{sbr_num}"
-    data = json.dumps([{"type": "URL", "parsed_data": landingpage_url}])
+    handle_url = f"https://pid.gwdg.de/handles/{PID_HANDLE}/{PID}"
+    data = json.dumps([{"type": "URL", "parsed_data": url}])
     r = requests.put(
-        url=url,
+        url=handle_url,
         data=data,
         headers=headers,
         auth=HTTPBasicAuth(username, password),
@@ -32,12 +29,12 @@ def create_pid(sbr_num: int, username: str, password: str) -> None:
     print(f"PUT request status code: {r.status_code}")
 
 
-def pid_exists(sbr_num: int, username: str, password: str) -> bool:
+def pid_exists(PID: str, username: str, password: str) -> bool:
     headers = {"Content-Type": "application/json"}
-    url = f"https://pid.gwdg.de/handles/{PID_HANDLE}/{sbr_num}"
+    handle_url = f"https://pid.gwdg.de/handles/{PID_HANDLE}/{PID}"
 
     r = requests.get(
-        url=url,
+        url=handle_url,
         headers=headers,
         auth=HTTPBasicAuth(username=username, password=password),
     )
@@ -51,28 +48,27 @@ def pid_exists(sbr_num: int, username: str, password: str) -> bool:
 
 
 if __name__ == "__main__":
-    load_dotenv()
-
     parser = argparse.ArgumentParser(
-        description="Create a PID for a Språkbanken resource"
+        description="Create a PID for a given resource"
     )
     parser.add_argument(
-        "sbr_num",
-        type=int,
-        help="Resource number (number after sbr- in the resource catalogue url)",
+        "PID",
+        type=str,
+        help="The actual PID to create.",
     )
+
     parser.add_argument(
-        "-c",
-        "--check_previous",
+        "--url",
+        type=str,
+        help="The URL that the PID is associated with.",
+    )
+
+    parser.add_argument(
+        "--override",
+        help="Override an existing PID if it exists.",
         action="store_true",
-        help="If flagged, check if PID exist for all previous sbr-numbers (from 1 to sbr_num)",
     )
-    parser.add_argument(
-        "-a",
-        "--add_previous",
-        action="store_true",
-        help="If flagged, will create PIDs when they are missing for all previous sbr-numbers (from 1 to sbr_num)",
-    )
+
     args = parser.parse_args()
 
     for env_variable in ("username", "password"):
@@ -80,27 +76,16 @@ if __name__ == "__main__":
             print(f"environment variable '{env_variable}' is missing in .env file!")
             exit(1)
 
-    if args.check_previous:
-        print(f"Checking if PID exist for all sbr numbers upto {args.sbr_num}")
-        pid_missing_list = [
-            i
-            for i in range(1, args.sbr_num)
-            if not pid_exists(i, os.environ["username"], os.environ["password"])
-        ]
-        if pid_missing_list:
-            print(
-                f"PID missing for the following sbr numbers: {'\n'.join(str(i) for i in pid_missing_list)}"
-            )
-            if args.add_previous:
-                for i in pid_missing_list:
-                    create_pid(
-                        sbr_num=i,
-                        username=os.environ["username"],
-                        password=os.environ["password"],
-                    )
+    # first: check if PID exists
+    exists = pid_exists(args.PID, os.environ["username"], os.environ["password"])
 
+    # if it exists, override only if override param is set, otherwise exit
+    if exists == True:
+        if args.override == True:
+            print(f"{args.PID} already exists, overriding as ordered.")
+            pass
         else:
-            print("No PIDs missing")
+            print(f"{args.PID} already exists, not overriding. Exiting.")
+            exit(1)
 
-    create_pid(args.sbr_num, os.environ["username"], os.environ["password"])
-    print(f"PID link for COMEDI metadata:\nhdl:{PID_HANDLE}/{args.sbr_num}")
+    create_pid(args.PID, args.url, os.environ["username"], os.environ["password"])
