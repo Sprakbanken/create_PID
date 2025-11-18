@@ -9,14 +9,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-PID_HANDLE = os.environ["PID_HANDLE"]
+HANDLE_PREFIX = os.environ["HANDLE_PREFIX"]
 
 def create_pid(PID: str, url: str, username: str, password: str) -> None:
     print(f"Creating PID for {PID}")
 
     headers = {"Content-Type": "application/json"}
 
-    handle_url = f"https://pid.gwdg.de/handles/{PID_HANDLE}/{PID}"
+    handle_url = f"https://pid.gwdg.de/handles/{HANDLE_PREFIX}/{PID}"
     data = json.dumps([{"type": "URL", "parsed_data": url}])
     r = requests.put(
         url=handle_url,
@@ -31,7 +31,7 @@ def create_pid(PID: str, url: str, username: str, password: str) -> None:
 
 def pid_exists(PID: str, username: str, password: str) -> bool:
     headers = {"Content-Type": "application/json"}
-    handle_url = f"https://pid.gwdg.de/handles/{PID_HANDLE}/{PID}"
+    handle_url = f"https://pid.gwdg.de/handles/{HANDLE_PREFIX}/{PID}"
 
     r = requests.get(
         url=handle_url,
