@@ -7,9 +7,7 @@ import json
 import argparse
 from dotenv import load_dotenv
 
-
-PID_HANDLE = "21.11146"
-
+PID_HANDLE = os.environ["PID_HANDLE"]
 
 def create_pid(sbr_num: int, username: str, password: str) -> None:
     print(f"Creating PID for sbr-{sbr_num}")
