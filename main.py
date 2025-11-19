@@ -93,8 +93,8 @@ if __name__ == "__main__":
     )
 
     parser_create.add_argument(
-        "--override",
-        help="Override an existing PID if it exists.",
+        "--update",
+        help="Update an existing PID if it exists.",
         action="store_true",
     )
 
@@ -112,13 +112,13 @@ if __name__ == "__main__":
             # first: check if PID exists
             pid = get_pid(args.PID, os.environ["username"], os.environ["password"])
 
-            # if it exists, override only if override param is set, otherwise exit
+            # if it exists, update only if update param is explicitly set, otherwise exit
             if pid != None:
-                if args.override:
-                    print(f"{args.PID} already exists, overriding as ordered.")
+                if args.update:
+                    print(f"{args.PID} already exists, updating as requested.")
                     pass
                 else:
-                    print(f"{args.PID} already exists, not overriding. Exiting.")
+                    print(f"{args.PID} already exists, leaving it untouched. Exiting.")
                     exit(1)
 
             create_pid(args.PID, args.url, os.environ["username"], os.environ["password"])
