@@ -116,7 +116,7 @@ if __name__ == "__main__":
 
             # if it exists, override only if override param is set, otherwise exit
             if pid != None:
-                if args.override == True:
+                if args.override:
                     print(f"{args.PID} already exists, overriding as ordered.")
                     pass
                 else:
