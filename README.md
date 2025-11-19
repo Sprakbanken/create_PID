@@ -19,7 +19,7 @@ pip install .
 
 ### Miljøvariabler
 Spør en kollega om brukernavn, passord og handle-prefiks til .env  
-Se [.env-example](.env-example) for hvordan `.env`-fila skal se ut (lag en kopi, kall den `.env` og fyll inn brukernavn og passord)
+Se [.env-example](.env-example) for hvordan `.env`-fila skal se ut (lag en kopi, kall den `.env` og fyll inn brukernavn, passord og HANDLE_PREFIX)
 
 ## Kjør koden
 
