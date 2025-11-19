@@ -109,7 +109,7 @@ if __name__ == "__main__":
             pids = pid_list(os.environ["username"], os.environ["password"])
             for pid in pids:
                 print(pid)
-            exit(1)
+            exit(0)
         elif args.command == "create":
             # first: check if PID exists
             pid = get_pid(args.PID, os.environ["username"], os.environ["password"])
