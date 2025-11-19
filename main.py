@@ -107,14 +107,14 @@ if __name__ == "__main__":
     if args.command:
         if args.command == "list":
             pid_list(os.environ["username"], os.environ["password"])
-            exit(1)
+            exit(0)
         elif args.command == "create":
             # first: check if PID exists
             pid = get_pid(args.PID, os.environ["username"], os.environ["password"])
 
             # if it exists, override only if override param is set, otherwise exit
             if pid != None:
-                if args.override == True:
+                if args.override:
                     print(f"{args.PID} already exists, overriding as ordered.")
                     pass
                 else:
