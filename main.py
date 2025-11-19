@@ -49,7 +49,7 @@ def get_pid(PID: str, username: str, password: str) -> dict | None:
     print(f"Unexpected status code: {r.status_code} for GET request to url: {r.url}")
     return None
 
-def pid_list(username: str, password: str) -> bool:
+def pid_list(username: str, password: str) -> None:
     headers = {"Content-Type": "application/json"}
     handle_url = f"https://pid.gwdg.de/handles/{HANDLE_PREFIX}"
 
@@ -60,15 +60,15 @@ def pid_list(username: str, password: str) -> bool:
     )
 
     if r.status_code == 404:
-        return False
+        print("Prefix not found.")
     if r.status_code == 200:
         pids = [pid for pid in r.content.decode("utf-8").split("\r\n") if pid.strip() != ""]
         for pid in pids:
             content = get_pid(pid, username, password)
             if content:
-                yield [pid, content[0]["type"], content[0]["parsed_data"]]
+                print(pid, content[0]["type"], content[0]["parsed_data"])
             else:
-                yield [pid, None, None]
+                print(pid, None, None)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -106,9 +106,7 @@ if __name__ == "__main__":
 
     if args.command:
         if args.command == "list":
-            pids = pid_list(os.environ["username"], os.environ["password"])
-            for pid in pids:
-                print(pid)
+            pid_list(os.environ["username"], os.environ["password"])
             exit(1)
         elif args.command == "create":
             # first: check if PID exists
