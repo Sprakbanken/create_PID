@@ -29,7 +29,7 @@ def create_pid(PID: str, url: str, username: str, password: str) -> None:
     print(f"PUT request status code: {r.status_code}")
 
 
-def get_pid(PID: str, username: str, password: str) -> bool:
+def get_pid(PID: str, username: str, password: str) -> dict | None:
     headers = {"Content-Type": "application/json"}
     handle_url = f"https://pid.gwdg.de/handles/{HANDLE_PREFIX}/{PID}"
 
@@ -40,14 +40,14 @@ def get_pid(PID: str, username: str, password: str) -> bool:
     )
 
     if r.status_code == 404:
-        return False
+        return None
     if r.status_code == 200:
         try:
             return r.json()
         except:
             return {}
     print(f"Unexpected status code: {r.status_code} for GET request to url: {r.url}")
-    return False
+    return None
 
 def pid_list(username: str, password: str) -> bool:
     headers = {"Content-Type": "application/json"}
@@ -115,7 +115,7 @@ if __name__ == "__main__":
             pid = get_pid(args.PID, os.environ["username"], os.environ["password"])
 
             # if it exists, override only if override param is set, otherwise exit
-            if pid != False:
+            if pid != None:
                 if args.override == True:
                     print(f"{args.PID} already exists, overriding as ordered.")
                     pass
