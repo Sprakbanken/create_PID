@@ -45,7 +45,8 @@ def get_pid(PID: str, username: str, password: str) -> dict | None:
         try:
             return r.json()
         except requests.exceptions.JSONDecodeError:
-            return {}
+            print(f"JSONDecodeError when trying to parse content from request: {r}")
+            return None
     print(f"Unexpected status code: {r.status_code} for GET request to url: {r.url}")
     return None
 
