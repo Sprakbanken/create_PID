@@ -59,7 +59,7 @@ uv run main.py create 23b9ce9d-14b9-4f7c-9b25-f305e3e7ca6a --url https://www.nb.
 Dette vil lage en PID for ressursen, som kan resolves via:
 https://hdl.handle.net/{HANDLE_PREFIX}/23b9ce9d-14b9-4f7c-9b25-f305e3e7ca6a
 
-Hvis PIDen allerede eksisterer, vil man få beskjed om det. Hvis man ønsker å overstyre URLen som den eksisterende PIDen viser til, kan man bruke parameteret --update.
+Hvis PIDen allerede eksisterer, vil man få beskjed om det. Hvis man ønsker å endre URLen som den eksisterende PIDen viser til, kan man bruke parameteret --update.
 
 ```bash
 uv run main.py create 23b9ce9d-14b9-4f7c-9b25-f305e3e7ca6a --url https://www.nb.no --update
@@ -126,7 +126,7 @@ uv run main.py create 23b9ce9d-14b9-4f7c-9b25-f305e3e7ca6a --url https://www.nb.
 This will create a PID for the resource, which can be resolved via:
 https://hdl.handle.net/{HANDLE_PREFIX}/23b9ce9d-14b9-4f7c-9b25-f305e3e7ca6a
 
-If the PID already exists, you will be notified. If you want to override the URL that the existing PID points to, you can use the --update parameter.
+If the PID already exists, you will be notified. If you want to change the URL that the existing PID points to, you can use the --update parameter.
 
 ```bash
 uv run main.py create 23b9ce9d-14b9-4f7c-9b25-f305e3e7ca6a --url https://www.nb.no --update
