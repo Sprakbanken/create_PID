@@ -104,11 +104,10 @@ if __name__ == "__main__":
             print(f"environment variable '{env_variable}' is missing in .env file!")
             exit(1)
 
-    if args.command:
-        if args.command == "list":
+    match args.command:
+        case "list":
             pid_list(os.environ["username"], os.environ["password"])
-            exit(0)
-        elif args.command == "create":
+        case "create":
             # first: check if PID exists
             pid = get_pid(args.PID, os.environ["username"], os.environ["password"])
 
@@ -122,5 +121,5 @@ if __name__ == "__main__":
                     exit(1)
 
             create_pid(args.PID, args.url, os.environ["username"], os.environ["password"])
-    else:
-        parser.print_help()
+        case _:
+            parser.print_help()
