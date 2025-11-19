@@ -44,7 +44,7 @@ def get_pid(PID: str, username: str, password: str) -> dict | None:
     if r.status_code == 200:
         try:
             return r.json()
-        except:
+        except requests.exceptions.JSONDecodeError:
             return {}
     print(f"Unexpected status code: {r.status_code} for GET request to url: {r.url}")
     return None
