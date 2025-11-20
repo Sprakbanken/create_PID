@@ -1,7 +1,6 @@
 import requests
 from requests.auth import HTTPBasicAuth
 import os
-import lxml
 import time
 import json
 import argparse
