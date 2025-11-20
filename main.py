@@ -6,7 +6,7 @@ import json
 import argparse
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 HANDLE_PREFIX = os.environ["HANDLE_PREFIX"]
 
