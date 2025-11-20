@@ -100,7 +100,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     for env_variable in ("username", "password"):
-        if not os.environ[env_variable]:
+        if not env_variable in os.environ:
             print(f"environment variable '{env_variable}' is missing in .env file!")
             exit(1)
 
