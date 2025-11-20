@@ -61,7 +61,7 @@ def pid_list(username: str, password: str) -> None:
 
     if r.status_code == 404:
         print("Prefix not found.")
-    if r.status_code == 200:
+    elif r.status_code == 200:
         pids = [pid for pid in r.content.decode("utf-8").split("\r\n") if pid.strip() != ""]
         for pid in pids:
             content = get_pid(pid, username, password)
@@ -69,6 +69,9 @@ def pid_list(username: str, password: str) -> None:
                 print(pid, content[0]["type"], content[0]["parsed_data"])
             else:
                 print(pid, None, None)
+    else:
+        print(f"Unexpected status code: {r.status_code} for GET request to url: {r.url}")
+        exit(1)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
